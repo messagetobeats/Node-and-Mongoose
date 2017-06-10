@@ -23,8 +23,6 @@ app.get('/login', loginController.get);
 app.post('/loginCheck', loginController.loginCheck);
 
 
-
-
 app.listen(config.port, function()
 {
   console.dir("Server listening config set to: ");
