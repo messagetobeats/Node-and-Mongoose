@@ -14,7 +14,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
-middleware(app); //apply middleware to app
+//apply middleware to app
+middleware(app);
 
 //secured routes
 app.use('/api', authenticate, apiRouter);
