@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon app"
   },
-  "author": "",
+  "author": "Zain",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.17.2",
