@@ -9,6 +9,7 @@
   "author": "Zain",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
     "cookies": "^0.7.0",
     "ejs": "^2.5.6",

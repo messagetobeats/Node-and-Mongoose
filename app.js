@@ -4,8 +4,9 @@ var path = require('path');
 var express = require('express');
 var ejs = require('ejs');
 var middleware = require('./middleware/appMiddleware');
-var apiRouter = require('./routers/apiRouter');
 var authenticate = require('./middleware/authenticateMiddleware');
+var encrypt = require('./middleware/encryptMiddleware');
+var apiRouter = require('./routers/apiRouter');
 var loginController = require('./controllers/loginController');
 var registerController = require('./controllers/registerController');
 
@@ -25,7 +26,7 @@ app.use('/api', authenticate, apiRouter)
 
 //login
 app.get('/register', registerController.get);
-app.post('/register', registerController.post);
+app.post('/register', encrypt.hashPassword, registerController.post);
 
 app.get('/login', loginController.get);
 app.post('/loginCheck', loginController.loginCheck);

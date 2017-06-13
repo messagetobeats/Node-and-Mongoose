@@ -1,4 +1,6 @@
 var UserModel = require('../models/userModel');
+var bcryptjs = require('bcryptjs')
+
 var jwt = require('jsonwebtoken');
 var Cookies = require('cookies');
 
@@ -14,6 +16,19 @@ function createToken(req, res, docs)
   res.end();
 }
 
+var checkHashedPassword = function(req, res, docs)
+{
+  var password = req.body.password;
+  var hashed_password = docs[0]["password"];
+
+  bcryptjs.compare(password, hashed_password, function(err, match)
+  {
+      if(match) createToken(req, res, docs);
+      else console.log("incorrect password")
+  });
+
+}
+
 
 module.exports =
 {
@@ -25,9 +40,9 @@ module.exports =
 
   loginCheck:function(req, res)
              {
-                UserModel.find({email:req.body.email, password:req.body.password}, function(err, docs)
+                UserModel.find({email:req.body.email}, function(err, docs)
                 {
-                          if(docs.length === 1) createToken(req, res, docs);
+                          if(docs.length === 1) checkHashedPassword(req, res, docs)//createToken(req, res, docs);
                           else console.log("no user found")
                 });
              }
