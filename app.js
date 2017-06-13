@@ -7,6 +7,9 @@ var middleware = require('./middleware/appMiddleware');
 var apiRouter = require('./routers/apiRouter');
 var authenticate = require('./middleware/authenticateMiddleware');
 var loginController = require('./controllers/loginController');
+var registerController = require('./controllers/registerController');
+
+
 
 
 var app = express();
@@ -18,9 +21,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 middleware(app);
 
 //secured routes
-app.use('/api', authenticate, apiRouter);
+app.use('/api', authenticate, apiRouter)
 
 //login
+app.get('/register', registerController.get);
+app.post('/register', registerController.post);
+
 app.get('/login', loginController.get);
 app.post('/loginCheck', loginController.loginCheck);
 

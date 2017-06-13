@@ -1,4 +1,4 @@
-var LoginModel = require('../models/loginModel');
+var UserModel = require('../models/userModel');
 var jwt = require('jsonwebtoken');
 var Cookies = require('cookies');
 
@@ -25,7 +25,7 @@ module.exports =
 
   loginCheck:function(req, res)
              {
-                LoginModel.find({email:req.body.email, password:req.body.password}, function(err, docs)
+                UserModel.find({email:req.body.email, password:req.body.password}, function(err, docs)
                 {
                           if(docs.length === 1) createToken(req, res, docs);
                           else console.log("no user found")
